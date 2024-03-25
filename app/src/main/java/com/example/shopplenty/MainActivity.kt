@@ -1,5 +1,6 @@
 package com.example.shopplenty
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -14,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -24,7 +26,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -51,11 +57,17 @@ fun Demo(){
    Column(modifier = Modifier
        .fillMaxSize()
 
+       .paint(
+           painterResource(id = R.drawable.bg),
+           contentScale = ContentScale.FillBounds
+       )
 
+   )
 
+   {
 
-   ) {
-     Text(
+       val mContext = LocalContext.current
+       Text(
            text = "Welcome to Android",
            fontSize = 30.sp,
            color = Color.Blue,
@@ -132,28 +144,22 @@ Divider()
 
 
 
-       Text(text = "\n" +
-
-
-               "    Processor: Qualcomm SM6225 Snapdragon 685 (6 nm)\n" +
-               "    Connectivity: Dual sim, 3G, 4G, Wi-Fi\n" +
-               "    Colors: Midnight Black, Mint Green, Ice Blue, Ocean Sunset\n" +
-               "    OS: Android 13, MIUI 14\n")
+       Text(text = "")
 
 
 
+   Box (modifier = Modifier.fillMaxWidth(),
+       contentAlignment = Alignment.Center){
        Button(onClick = { /*TODO*/ },
            shape = RoundedCornerShape(5.dp),
            colors = ButtonDefaults.buttonColors(Color.Blue)
-           , modifier = Modifier
-               .fillMaxWidth()
-               .padding(start = 100.dp, end = 100.dp)
 
        ) {
            Text(text = "more phones" )
 
 
        }
+   }
        Divider()
 
        Spacer(modifier = Modifier.height(5.dp))
@@ -177,15 +183,21 @@ Box(modifier = Modifier.fillMaxWidth(),
     Image(painter = painterResource(id = R.drawable.ashera),
         contentDescription = "Monalisa",
         modifier = Modifier
-            .size(150.dp))
+            .clip(shape = CircleShape)
+            .size(150.dp),
+        contentScale = ContentScale.Crop
+    )
 
 
 }
-Button(onClick = { /*TODO*/ },
+Button(onClick = {
+mContext.startActivity(Intent(mContext,layout::class.java))
+
+},
 shape = RoundedCornerShape(10.dp),
     colors = ButtonDefaults.buttonColors(Color.Blue)
 , modifier = Modifier
-    .fillMaxWidth()
+        .fillMaxWidth()
         .padding(start = 30.dp, end = 30.dp)
 
     ) {
