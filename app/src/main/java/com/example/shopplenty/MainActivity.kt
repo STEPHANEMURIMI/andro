@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -24,6 +25,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -39,6 +41,10 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.airbnb.lottie.compose.LottieAnimation
+import com.airbnb.lottie.compose.LottieCompositionSpec
+import com.airbnb.lottie.compose.animateLottieCompositionAsState
+import com.airbnb.lottie.compose.rememberLottieComposition
 import com.example.shopplenty.ui.theme.ShopPlentyTheme
 import org.w3c.dom.Text
 
@@ -80,6 +86,8 @@ fun Demo(){
 
 
        )
+
+       //Lottie Animation
        Spacer(modifier = Modifier.height(10.dp))
      Text(
          text = "Types of cars",
@@ -132,30 +140,21 @@ Divider()
                "    Internal Storage: 256GB\n" +
                "    Battery: 5000mAh\n" +
             "    OS: Android 13, MIUI 14\n")
-       Text(text = "2.SAMSUNG",
-           modifier = Modifier
-               .fillMaxWidth()
-               .background(Color.Blue)
-               .height(30.dp)
-           ,
-           textAlign = TextAlign.Center,
-           color = Color.Cyan
-           )
 
-
-
-       Text(text = "")
 
 
 
    Box (modifier = Modifier.fillMaxWidth(),
        contentAlignment = Alignment.Center){
-       Button(onClick = { /*TODO*/ },
+       Button(onClick = { mContext.startActivity(Intent(mContext,SplashActivity::class.java)) },
            shape = RoundedCornerShape(5.dp),
            colors = ButtonDefaults.buttonColors(Color.Blue)
 
        ) {
-           Text(text = "more phones" )
+           Text(text = "Destinations" ,
+
+
+               )
 
 
        }
@@ -205,6 +204,21 @@ Text(text = "continue")
 
 
 }
+       Button(onClick = {
+           mContext.startActivity(Intent(mContext,LottieActivity::class.java))
+
+       },
+           shape = RoundedCornerShape(10.dp),
+           colors = ButtonDefaults.buttonColors(Color.Blue)
+           , modifier = Modifier
+               .fillMaxWidth()
+               .padding(start = 30.dp, end = 30.dp)
+
+       ) {
+           Text(text = "lottie")
+
+
+       }
 
    }
 

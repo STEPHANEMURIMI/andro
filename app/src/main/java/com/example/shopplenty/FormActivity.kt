@@ -185,11 +185,10 @@ TextField(
         }
     }
     Text(
-        text = " Have an account?Login now",
+        text = " Destinations",
         fontSize = 30.sp,
         fontFamily = FontFamily.Cursive,
         modifier = Modifier
-            .clickable { mContext.startActivity(Intent(mContext,FormActivity::class.java)) }
             .fillMaxWidth(),
         textAlign = TextAlign.Center,
         fontWeight = FontWeight.Bold
