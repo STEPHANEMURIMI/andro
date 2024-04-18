@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1033995066860",
+    "project_id": "shopify-9300d",
+    "storage_bucket": "shopify-9300d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1033995066860:android:a93615de28af83e380f4c9",
+        "android_client_info": {
+          "package_name": "com.example.shopplenty"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD250mnoedN7ISisNC83M3Ahmu1WjN7n9g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

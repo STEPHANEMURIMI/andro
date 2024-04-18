@@ -1,5 +1,7 @@
+
 package com.example.shopplenty
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -92,7 +94,7 @@ fun MyFirst(){  val mContext = LocalContext.current
 
         )
         Button(onClick = {
-
+            mContext.startActivity(Intent(mContext,InsertActivity::class.java))
 
         },
             shape = RoundedCornerShape(10.dp),
