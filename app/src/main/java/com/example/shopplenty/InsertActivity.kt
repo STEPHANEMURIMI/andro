@@ -57,9 +57,9 @@ class InsertActivity : ComponentActivity() {
 @Composable
 fun firebaseUI() {
     val context= LocalContext.current
-    val courseName = remember { mutableStateOf("") }
-    val courseDuration = remember { mutableStateOf("") }
-    val courseDescription = remember { mutableStateOf("") }
+    val PatientName = remember { mutableStateOf("") }
+    val EmailAddress = remember { mutableStateOf("") }
+    val Age = remember { mutableStateOf("") }
 
 
     Column (
@@ -84,8 +84,8 @@ fun firebaseUI() {
         Spacer(modifier = Modifier.height(10.dp))
 
         OutlinedTextField(
-            value = courseName.value,
-            onValueChange = { courseName.value = it },
+            value = PatientName.value,
+            onValueChange = { PatientName.value = it },
             placeholder = { Text(text = "Enter your course name") },
             modifier = Modifier
                 .padding(16.dp)
@@ -97,8 +97,8 @@ fun firebaseUI() {
         Spacer(modifier = Modifier.height(5.dp))
 
         OutlinedTextField(
-            value = courseDuration.value,
-            onValueChange = { courseDuration.value = it },
+            value = Age.value,
+            onValueChange = { Age.value = it },
             placeholder = { Text(text = "Enter your course duration") },
             modifier = Modifier
                 .padding(16.dp)
@@ -110,8 +110,8 @@ fun firebaseUI() {
         Spacer(modifier = Modifier.height(5.dp))
 
         OutlinedTextField(
-            value = courseDescription.value,
-            onValueChange = { courseDescription.value = it },
+            value =EmailAddress.value,
+            onValueChange = { EmailAddress.value = it },
             placeholder = { Text(text = "Enter your course description") },
             modifier = Modifier
                 .padding(16.dp)
@@ -124,22 +124,22 @@ fun firebaseUI() {
 
         Button(
             onClick = {
-                if (TextUtils.isEmpty(courseName.value.toString())) {
-                    Toast.makeText(context, "Please enter course name", Toast.LENGTH_SHORT)
+                if (TextUtils.isEmpty(PatientName.value.toString())) {
+                    Toast.makeText(context, "Please enter  name", Toast.LENGTH_SHORT)
                         .show()
-                } else if (TextUtils.isEmpty(courseDuration.value.toString())) {
-                    Toast.makeText(context, "Please enter course Duration", Toast.LENGTH_SHORT)
+                } else if (TextUtils.isEmpty(EmailAddress.value.toString())) {
+                    Toast.makeText(context, "Please enter Email", Toast.LENGTH_SHORT)
                         .show()
-                } else if (TextUtils.isEmpty(courseDescription.value.toString())) {
+                } else if (TextUtils.isEmpty(Age.value.toString())) {
                     Toast.makeText(
                         context,
-                        "Please enter course descritpion",
+                        "Please enter Age",
                         Toast.LENGTH_SHORT
                     )
                         .show()
                 } else {
                     addDataToFirebase(
-                        courseName.value, courseDuration.value, courseDescription.value, context
+                        PatientName.value, Age.value, EmailAddress.value, context
                     )
                 }
             },

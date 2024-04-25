@@ -46,7 +46,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.shoplenty.ui.theme.lblue
+import com.example.shopplenty.ui.theme.lblue
+
 import com.google.firebase.firestore.FirebaseFirestore
 
 class DetailsActivity : ComponentActivity() {
@@ -55,7 +56,7 @@ class DetailsActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
 
-            var courseList = mutableStateListOf<Patients?>()
+            var patientList = mutableStateListOf<Patients?>()
             var db: FirebaseFirestore = FirebaseFirestore.getInstance()
             db.collection("Courses").get()
                 .addOnSuccessListener { queryDocumentSnapshots ->
@@ -63,7 +64,7 @@ class DetailsActivity : ComponentActivity() {
                         val list = queryDocumentSnapshots.documents
                         for (d in list) {
                             val c: Patients? = d.toObject(Patients::class.java)
-                            courseList.add(c)
+                            patientList.add(c)
 
                         }
                     } else {
@@ -73,14 +74,14 @@ class DetailsActivity : ComponentActivity() {
                 .addOnFailureListener {
                     Toast.makeText(this@DetailsActivity, "Fail to get the data.", Toast.LENGTH_SHORT).show()
                 }
-            firebaseUI(LocalContext.current, courseList)
+            firebaseUI(LocalContext.current, patientList)
         }
     }
 }
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 
-fun firebaseUI(context: Context, courseList: SnapshotStateList<Courses?>) {
+fun firebaseUI(context: Context, courseList: SnapshotStateList<Patients?>) {
     Column(modifier = Modifier
         .fillMaxHeight()
         .fillMaxWidth()
@@ -114,7 +115,7 @@ fun firebaseUI(context: Context, courseList: SnapshotStateList<Courses?>) {
                         Row {
 
                             Text(text = "Course Name :", fontWeight = FontWeight.Bold, fontSize = 15.sp)
-                            courseList[index]?.courseName?.let {
+                            courseList[index]?.PatientName?.let {
                                 Text(
                                     text = it,
                                     modifier = Modifier.padding(4.dp),
@@ -132,7 +133,7 @@ fun firebaseUI(context: Context, courseList: SnapshotStateList<Courses?>) {
                         Row {
 
                             Text(text = "Course Duration :", fontWeight = FontWeight.Bold, fontSize = 15.sp)
-                            courseList[index]?.courseDuration?.let {
+                            courseList[index]?.Age?.let {
                                 Text(
                                     text = it,
                                     modifier = Modifier.padding(4.dp),
@@ -148,7 +149,7 @@ fun firebaseUI(context: Context, courseList: SnapshotStateList<Courses?>) {
                         Row {
 
                             Text(text = "Course Description :", fontWeight = FontWeight.Bold, fontSize = 15.sp)
-                            courseList[index]?.courseDescription?.let {
+                            courseList[index]?.EmailAddress?.let {
                                 Text(
                                     text = it,
                                     modifier = Modifier.padding(4.dp),
@@ -165,7 +166,7 @@ fun firebaseUI(context: Context, courseList: SnapshotStateList<Courses?>) {
         }
     }
 }
-@Preview(showBackground = true)
+@Preview(showBackground = false)
 @Composable
 fun CourseDetailsPreview() {
 
